@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Destinasi;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
+
 
 class DestinasiController extends Controller
 {
@@ -19,11 +21,20 @@ class DestinasiController extends Controller
         return view('beranda', compact('destinations'));
     }
 
-    public function index()
-    {
-        $destinasiList = Destinasi::latest()->get();
-        return view('destinations', compact('destinasiList'));
-    }
+    public function index(Request $request)
+{
+    $keyword = $request->input('cari');
+ 
+    $destinasiList = Destinasi::when($keyword, function ($query) use ($keyword) {
+            $query->where('nama', 'like', '%' . $keyword . '%');
+        })
+        ->latest()
+        ->paginate(2);
+ 
+    return view('destinations', compact('destinasiList', 'keyword'));
+}
+
+
 
     public function show($id)
     {
@@ -67,4 +78,9 @@ class DestinasiController extends Controller
         return redirect()->route('destinations')
             ->with('success', 'Destinasi berhasil dihapus!');
     }
+
+    public function boot(): void
+{
+    Paginator::useBootstrapFive();
+}
 }

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>@yield('title','KanjaBuzz - Pekanbaru Wisata')</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,6 +44,7 @@
                         </li>
                         <li class="nav-item ms-lg-2">
                         </li>
+
                     </ul>
                 </div>
             </div>
@@ -56,7 +57,7 @@
         <div class="container">
             <div class="row gy-4">
 
-                <div class="col-md-4">
+                <div class="col-12 col-md-4">
                     <div class="footer-brand">
                         🐝 KanjaBuzz
                     </div>
@@ -65,7 +66,7 @@
                     </p>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-6 col-md-4">
                     <h6 class="mb-3">Navigasi</h6>
                     <ul class="list-unstyled">
                         <li class="mb-2"><a href="{{ route('beranda') }}" class="footer-link text-secondary text-decoration-none">Beranda</a></li>
@@ -75,9 +76,9 @@
                     </ul>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-6 col-md-4">
                     <h6 class="mb-3">Ikuti Kami</h6>
-                    <div class="d-flex gap-3 fs-5">
+                    <div class="d-flex flex-wrap gap-3 fs-5">
                         <a href="https://instagram.com/kanjengratu31_" target="_blank" class="social-icon">
                             <i class="bi bi-instagram"></i>
                         </a>
@@ -129,6 +130,19 @@
                     navbar.style.boxShadow = 'none';
                 }
             });
+
+            // Tutup menu mobile otomatis setelah link diklik
+            const navbarCollapseEl = document.getElementById('navbarMenu');
+            if (navbarCollapseEl) {
+                const bsCollapse = new bootstrap.Collapse(navbarCollapseEl, { toggle: false });
+                navbarCollapseEl.querySelectorAll('.nav-link').forEach((link) => {
+                    link.addEventListener('click', () => {
+                        if (navbarCollapseEl.classList.contains('show')) {
+                            bsCollapse.hide();
+                        }
+                    });
+                });
+            }
         });
     </script>
 
