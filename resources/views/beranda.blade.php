@@ -118,67 +118,6 @@
     </div>
 </section>
 
-{{-- ============================= PAKET TUR ============================= --}}
-<section class="package-section">
-    <div class="container">
-
-        <div class="text-center mb-5" data-reveal>
-            <span class="eyebrow-editorial" style="justify-content: center;">Paket Tur</span>
-            <h2 class="section-title-editorial">Pilih Paket Perjalananmu</h2>
-        </div>
-
-        @php
-            $paketList = [
-                [
-                    'nama' => 'Jelajah Singkat', 'durasi' => '2 Hari 1 Malam', 'harga' => '850.000',
-                    'fitur' => ['Pemandu lokal', 'Transportasi dalam kota', '1x makan khas Minang'],
-                    'featured' => false,
-                ],
-                [
-                    'nama' => 'Petualangan Lengkap', 'durasi' => '4 Hari 3 Malam', 'harga' => '2.450.000',
-                    'fitur' => ['Pemandu lokal', 'Transportasi & penginapan', 'Semua makan disertakan', 'Kunjungan ke 5 destinasi utama'],
-                    'featured' => true,
-                ],
-                [
-                    'nama' => 'Ekspedisi Mentawai', 'durasi' => '5 Hari 4 Malam', 'harga' => '3.900.000',
-                    'fitur' => ['Kapal & pemandu lokal', 'Penginapan tepi pantai', 'Aktivitas surfing/snorkeling'],
-                    'featured' => false,
-                ],
-            ];
-        @endphp
-
-        <div class="row g-4 align-items-center">
-            @foreach ($paketList as $index => $paket)
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="package-card {{ $paket['featured'] ? 'featured' : '' }}" data-reveal style="transition-delay: {{ $index * 0.1 }}s;">
-                    @if ($paket['featured'])
-                        <span class="package-badge">Paling Diminati</span>
-                    @endif
-
-                    <h3 style="font-size: 1.2rem; margin-bottom: 4px;">{{ $paket['nama'] }}</h3>
-                    <div class="package-duration">{{ $paket['durasi'] }}</div>
-
-                    <div class="package-price">
-                        Rp {{ $paket['harga'] }} <span>/ orang</span>
-                    </div>
-
-                    <ul class="package-list">
-                        @foreach ($paket['fitur'] as $fitur)
-                        <li><i class="bi bi-check-circle-fill"></i> {{ $fitur }}</li>
-                        @endforeach
-                    </ul>
-
-                    <a href="{{ route('beranda') }}#pesan-form" class="btn-editorial w-100 justify-content-center" style="{{ $paket['featured'] ? 'background: var(--accent-gold); color: var(--ink);' : '' }}">
-                        Pesan Sekarang <i class="bi bi-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-            @endforeach
-        </div>
-
-    </div>
-</section>
-
 {{-- ============================= GALERI BERJALAN ============================= --}}
 <section class="marquee-section">
     <div class="container">

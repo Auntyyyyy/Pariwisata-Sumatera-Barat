@@ -4,11 +4,32 @@ namespace App\Http\Controllers;
 
 use App\Models\Destinasi;
 use Illuminate\Http\Request;
-use Illuminate\Pagination\Paginator;
-
 
 class DestinasiController extends Controller
 {
+    /**
+     * Aturan validasi untuk form Tambah/Edit Destinasi.
+     * Dipisah jadi method sendiri supaya tidak duplikat antara store() & update().
+     */
+    private function rules(): array
+    {
+        return [
+            'nama'       => 'required|string|min:3|max:18',
+            'deskripsi'  => 'required|string',
+            'gambar'     => 'required|string|max:255',
+            'jam_buka'   => 'required|date_format:H:i',
+            'jam_tutup'  => 'required|date_format:H:i|after:jam_buka',
+            'lokasi'     => 'nullable|string|max:255',
+        ];
+    }
+
+    private function messages(): array
+    {
+        return [
+            'jam_tutup.after' => 'Jam tutup harus lebih besar dari jam buka.',
+        ];
+    }
+
     /**
      * Beranda — menampilkan 3 destinasi terbaru untuk section Gallery.
      * Jika belum ada route/controller khusus untuk beranda, method ini
@@ -22,19 +43,17 @@ class DestinasiController extends Controller
     }
 
     public function index(Request $request)
-{
-    $keyword = $request->input('cari');
- 
-    $destinasiList = Destinasi::when($keyword, function ($query) use ($keyword) {
-            $query->where('nama', 'like', '%' . $keyword . '%');
-        })
-        ->latest()
-        ->paginate(2);
- 
-    return view('destinations', compact('destinasiList', 'keyword'));
-}
+    {
+        $keyword = $request->input('cari');
 
+        $destinasiList = Destinasi::when($keyword, function ($query) use ($keyword) {
+                $query->where('nama', 'like', '%' . $keyword . '%');
+            })
+            ->latest()
+            ->paginate(2);
 
+        return view('destinations', compact('destinasiList', 'keyword'));
+    }
 
     public function show($id)
     {
@@ -52,7 +71,10 @@ class DestinasiController extends Controller
 
     public function store(Request $request)
     {
-        $destinasi = Destinasi::create($request->all());
+        $validated = $request->validate($this->rules(), $this->messages());
+
+        $destinasi = Destinasi::create($validated);
+
         return redirect()->route('destinations.detail', $destinasi->id)
             ->with('success', 'Destinasi berhasil ditambahkan!');
     }
@@ -66,7 +88,11 @@ class DestinasiController extends Controller
     public function update(Request $request, $id)
     {
         $destinasi = Destinasi::findOrFail($id);
-        $destinasi->update($request->all());
+
+        $validated = $request->validate($this->rules(), $this->messages());
+
+        $destinasi->update($validated);
+
         return redirect()->route('destinations.detail', $destinasi->id)
             ->with('success', 'Destinasi berhasil diperbarui!');
     }
@@ -78,9 +104,4 @@ class DestinasiController extends Controller
         return redirect()->route('destinations')
             ->with('success', 'Destinasi berhasil dihapus!');
     }
-
-    public function boot(): void
-{
-    Paginator::useBootstrapFive();
-}
 }

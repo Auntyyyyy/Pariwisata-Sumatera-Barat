@@ -19,7 +19,7 @@
         <nav class="navbar navbar-expand-lg navbar-kanja">
             <div class="container">
                 <a class="navbar-brand kanja-brand" href="{{ route('beranda') }}">
-                   🐝KanjaBuzz
+                   🌪️KanjaBuzz
                 </a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -59,7 +59,7 @@
 
                 <div class="col-12 col-md-4">
                     <div class="footer-brand">
-                        🐝 KanjaBuzz
+                        🌪️KanjaBuzz
                     </div>
                     <p class="text-secondary small" style="max-width: 280px;">
                         Temukan pesona alam dan destinasi terbaik Sumatera Barat bersama kami — explore, enjoy, experience.
