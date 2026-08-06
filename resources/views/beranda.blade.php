@@ -4,9 +4,9 @@
 
 @section('content')
 
-{{-- ============================= HERO SINEMATIK ============================= --}}
+{{-- ============================= HERO ============================= --}}
 <section class="hero-cinematic">
-    <img src="{{ asset('images/Sumbar.jpg') }}" alt="Panorama Sumatera Barat" class="hero-cinematic-img">
+    <img src="{{ asset('images/Pasumpahan.jpg') }}" alt="Panorama Sumatera Barat" class="hero-cinematic-img">
 
     <div class="container hero-cinematic-content">
         <span class="hero-cinematic-eyebrow"><i class="bi bi-compass"></i> Sumatera Barat, Indonesia</span>
@@ -67,56 +67,6 @@
     </div>
 </section>
 
-{{-- ============================= PETA INTERAKTIF ============================= --}}
-<section class="map-section">
-    <div class="container">
-
-        <div class="text-center mb-5" data-reveal>
-            <span class="eyebrow-editorial" style="justify-content: center;">Peta Wisata</span>
-            <h2 class="section-title-editorial">Temukan Lokasinya</h2>
-        </div>
-
-        <div class="row g-4">
-            <div class="col-12 col-lg-8" data-reveal>
-                <div class="map-frame-editorial ratio ratio-16x9">
-                    <iframe
-                        src="https://www.google.com/maps?q={{ urlencode('Sumatera Barat, Indonesia') }}&output=embed"
-                        style="border:0;" allowfullscreen loading="lazy">
-                    </iframe>
-                </div>
-            </div>
-
-            <div class="col-12 col-lg-4" data-reveal style="transition-delay: 0.1s;">
-                <div class="map-legend">
-                    <h3 class="mb-3" style="font-size: 1.05rem;">Wilayah Populer</h3>
-
-                    <div class="map-legend-item">
-                        <span class="map-legend-dot"></span>
-                        <div>
-                            <div class="fw-semibold" style="font-family: var(--font-heading); font-size: 0.92rem;">Bukittinggi & Agam</div>
-                            <div class="text-secondary small">Ngarai, danau, udara sejuk pegunungan</div>
-                        </div>
-                    </div>
-                    <div class="map-legend-item">
-                        <span class="map-legend-dot" style="background: var(--sea-blue);"></span>
-                        <div>
-                            <div class="fw-semibold" style="font-family: var(--font-heading); font-size: 0.92rem;">Kepulauan Mentawai</div>
-                            <div class="text-secondary small">Ombak kelas dunia & budaya suku asli</div>
-                        </div>
-                    </div>
-                    <div class="map-legend-item">
-                        <span class="map-legend-dot" style="background: var(--accent-gold);"></span>
-                        <div>
-                            <div class="fw-semibold" style="font-family: var(--font-heading); font-size: 0.92rem;">Kota Padang</div>
-                            <div class="text-secondary small">Kuliner khas & gerbang menuju provinsi</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</section>
 
 {{-- ============================= GALERI BERJALAN ============================= --}}
 <section class="marquee-section">
@@ -130,12 +80,17 @@
     @php
         $galeriFoto = [
             ['img' => 'Maninjau 1.jpeg', 'caption' => 'Kelok 44'],
+            ['img' => 'Aul.jpeg', 'caption' => 'Mimin cantik'],
             ['img' => 'Mentawai 1.jpeg', 'caption' => 'Pulau Tuapejat'],
             ['img' => 'Mentawai 2.jpeg', 'caption' => 'Suku Mentawai'],
+            ['img' => 'Jokowi.jpg', 'caption' => 'Hidup Jokowiii'],
             ['img' => 'Ngarai-Sianok 1.jpeg', 'caption' => 'Ngarai Sianok'],
-            ['img' => 'MEntawai Tengkorak.jpeg', 'caption' => 'UMA'],
+            ['img' => 'Mentawai Tengkorak.jpeg', 'caption' => 'UMA'],
             ['img' => 'Pulau Awera Mentawai.jpeg', 'caption' => 'Pulau Awera'],
+            ['img' => 'Wowo.jpg', 'caption' => 'Pria Sawit'],
             ['img' => 'Suku Mentawai.jpeg', 'caption' => 'Pemandangan Suku Mentawai'],
+            ['img' => 'kubi.gif', 'caption' => 'Pentol'],
+
         ];
     @endphp
 
@@ -169,9 +124,24 @@
 
         @php
             $testimoniList = [
-                ['nama' => 'Mr. Prabowo Subianto', 'peran' => 'Presiden RI 8, Jakarta', 'teks' => 'Perjalanan ke Mentawai bersama KanjaBuzz benar-benar tak terlupakan — pemandunya ramah dan sangat paham budaya lokal.'],
-                ['nama' => 'Jokowi dodo', 'peran' => 'Presiden RI 7, Belanda', 'teks' => 'Ngarai Sianok jadi jauh lebih berkesan karena ceritanya disampaikan dengan detail oleh pemandu lokal kami.'],
-                ['nama' => 'Megawati Soekarno Putri', 'peran' => 'Presiden RI 5, Spanyol', 'teks' => 'Paket Petualangan Lengkap sepadan dengan harganya — semua terorganisir rapi dari awal sampai akhir.'],
+                [
+                    'nama' => 'Mr. Prabowo Subianto', 
+                    'peran' => 'Presiden RI 8, Jakarta', 
+                    'teks' => 'Perjalanan ke Mentawai bersama KanjaBuzz benar-benar tak terlupakan — pemandunya ramah dan sangat paham budaya lokal.',
+                    'foto' => 'Wowo.jpg' // TAMBAHKAN INI
+                ],
+                [
+                    'nama' => 'Jokowi Dodo', 
+                    'peran' => 'Presiden RI 7, Belanda', 
+                    'teks' => 'Ngarai Sianok jadi jauh lebih berkesan karena ceritanya disampaikan dengan detail oleh pemandu lokal kami.',
+                    'foto' => 'Jokowi.jpg' // TAMBAHKAN INI
+                ],
+                [
+                    'nama' => 'Megawati Soekarno Putri', 
+                    'peran' => 'Presiden RI 5, Spanyol', 
+                    'teks' => 'Paket Petualangan Lengkap sepadan dengan harganya — semua terorganisir rapi dari awal sampai akhir.',
+                    'foto' => 'Megachan.jpg' // TAMBAHKAN INI
+                ],
             ];
         @endphp
 
@@ -184,9 +154,18 @@
                     </div>
                     <p class="testimonial-text">"{{ $t['teks'] }}"</p>
                     <div class="testimonial-author">
-                        <div class="testimonial-avatar d-flex align-items-center justify-content-center flex-shrink-0" style="background: var(--leaf-green); color: var(--white); font-family: var(--font-heading); font-weight: 600;">
-                            {{ strtoupper(substr($t['nama'], 0, 1)) }}
+                        {{-- UBAH BAGIAN INI --}}
+                        <div class="testimonial-avatar flex-shrink-0">
+                            @if(isset($t['foto']) && !empty($t['foto']))
+                                <img src="{{ asset('images/' . $t['foto']) }}" alt="Foto {{ $t['nama'] }}" class="img-fluid rounded-circle">
+                            @else
+                                {{-- Fallback jika foto tidak ada --}}
+                                <div class="testimonial-avatar-fallback d-flex align-items-center justify-content-center" style="background: var(--leaf-green); color: var(--white); font-family: var(--font-heading); font-weight: 600; width: 100%; height: 100%; border-radius: 50%;">
+                                    {{ strtoupper(substr($t['nama'], 0, 1)) }}
+                                </div>
+                            @endif
                         </div>
+                        {{-- SELESAI UBAH BAGIAN INI --}}
                         <div>
                             <div class="testimonial-name">{{ $t['nama'] }}</div>
                             <div class="testimonial-role">{{ $t['peran'] }}</div>

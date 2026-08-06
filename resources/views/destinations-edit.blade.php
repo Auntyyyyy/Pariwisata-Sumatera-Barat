@@ -125,6 +125,15 @@
                                     value="{{ old('lokasi', $destinasi->lokasi) }}"
                                 >
                             </div>
+                            
+                                <div class="mb-4">
+                                    <label class="form-label">Harga Tiket (Rp)</label>
+                                <input type="number" name="harga_tiket" class="form-control"
+                                    value="{{ $destinasi->harga_tiket }}" min="0">
+
+                                </div>
+
+
 
                             <div class="d-flex gap-2">
                                 <button type="submit" class="btn-nature">

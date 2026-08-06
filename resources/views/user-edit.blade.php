@@ -151,6 +151,11 @@
                                         Administrator
                                     </option>
 
+                                    <option value="CI I O"
+                                        {{ $user->role=='CI I O' ? 'selected':'' }}>
+                                        CI I O
+                                    </option>
+
                                 </select>
 
                             </div>

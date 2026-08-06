@@ -93,7 +93,9 @@
                                     <option value="" disabled selected>Pilih role pengguna</option>
                                     <option value="user" {{ old('role') === 'user' ? 'selected' : '' }}>User</option>
                                     <option value="admin" {{ old('role') === 'admin' ? 'selected' : '' }}>Admin</option>
+                                    <option value="CI I O" {{ old('role') === 'CI I O' ? 'selected' : '' }}>CI I O</option>
                                 </select>
+                                
                                 @error('role')
                                     <div class="form-text-nature text-danger">{{ $message }}</div>
                                 @enderror
