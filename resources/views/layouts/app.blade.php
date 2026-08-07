@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,900;1,500&family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
@@ -42,9 +43,40 @@
                         <li class="nav-item">
                             <a class="nav-link kanja-link {{ request()->routeIs('contact') ? 'active' : '' }}" href="{{ route('contact') }}">Contact</a>
                         </li>
-                        <li class="nav-item ms-lg-2">
-                        </li>
 
+                        <!-- ===== User menu (avatar bulat pojok kanan) =====
+                             Catatan: belum terhubung ke sistem login. Tinggal
+                             avatar statis + link ke halaman Kelola User.
+                             Nanti kalau login sudah dipasang, tinggal bungkus
+                             blok ini dengan @@auth / @@guest lagi. -->
+                        <li class="nav-item ms-lg-3 dropdown user-menu-item">
+                            <a href="#"
+                               class="user-avatar-trigger"
+                               id="userMenuDropdown"
+                               role="button"
+                               data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                <span class="user-avatar-circle">U</span>
+                            </a>
+
+                            <ul class="dropdown-menu dropdown-menu-end user-dropdown-menu" aria-labelledby="userMenuDropdown">
+                                <li class="user-dropdown-header">
+                                    <span class="user-avatar-circle user-avatar-circle-lg">U</span>
+                                    <div class="user-dropdown-info">
+                                        <div class="user-dropdown-name">Pengguna</div>
+                                        <div class="user-dropdown-email">Belum login</div>
+                                    </div>
+                                </li>
+
+                                <li><hr class="dropdown-divider"></li>
+
+                                <li>
+                                    <a class="dropdown-item user-dropdown-link" href="{{ route('user') }}">
+                                        <i class="bi bi-people"></i> Kelola User
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -99,8 +131,7 @@
             <hr class="mt-5" style="border-color: #E2E8F0;">
 
             <div class="text-center text-secondary small">
-                &copy; {{ date('Y') }} KanjaBuzz. All Rights Reserved. | Explore, Enjoy, Experience.
-            </div>
+                &copy; {{ date('Y') }} KanjaBuzz. All Rights Reserved. | Design by Kanjeng Ratu
         </div>
     </footer>
 

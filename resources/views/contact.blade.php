@@ -65,14 +65,259 @@ $statusBuka = ($jamSekarang >= 6 && $jamSekarang < 17);
     }
 </style>
 
-{{-- ============================= HERO ============================= --}}
-<section class="hero-nature-sm">
-    <div class="container">
-        <span class="section-eyebrow"><i class="bi bi-headset"></i> {{ $ucapan }}</span>
-        <h1>Hubungi Kami</h1>
-        <p>Ada pertanyaan seputar destinasi di {{ $namaDaerah }}? Cek FAQ singkat di bawah, atau langsung kirim pesan ke tim kami.</p>
+{{-- ============================= HERO: STACKED CARD ============================= --}}
+<section class="stackhero">
+    <div class="stackhero-glow"></div>
+
+    <div class="container position-relative">
+        <div class="stackhero-copy text-center">
+            <span class="stackhero-eyebrow">{{ $ucapan }} &middot; Koleksi Destinasi Pilihan</span>
+            <h1 class="stackhero-title">
+                Keindahan <em>Indonesia</em><br>Satu Langkah Lebih Dekat
+            </h1>
+            <p class="stackhero-desc">
+                Dari ngarai yang menjulang hingga danau yang tenang — {{ $namaDaerah }} menyimpan cerita
+                yang layak dijelajahi. Ada pertanyaan sebelum berangkat? Tim kami siap membantu.
+            </p>
+            <div class="d-flex flex-wrap gap-3 justify-content-center">
+                <a href="{{ route('destinations') }}" class="stackhero-cta">
+                    Jelajahi Sekarang <i class="bi bi-arrow-right"></i>
+                </a>
+                <a href="#pesan-form" class="stackhero-cta-ghost">
+                    Kirim Pesan ke Kami
+                </a>
+            </div>
+        </div>
+
+        <div class="stackhero-stage">
+            <div class="stackhero-card stackhero-card-left">
+                <img src="{{ asset('images/Mentawaikontak.jpg') }}" alt="Pulau Mentawai">
+                <div class="stackhero-card-label">
+                    <span>Ngarai Sianok</span>
+                </div>
+            </div>
+
+            <div class="stackhero-card stackhero-card-center">
+                <img src="{{ asset('images/Maninjaukontak.jpg') }}" alt="Danau Maninjau">
+                <div class="stackhero-card-label stackhero-card-label-lg">
+                    <span class="stackhero-card-title">Danau Maninjau</span>
+                </div>
+            </div>
+
+            <div class="stackhero-card stackhero-card-right">
+                <img src="{{ asset('images/jamgadang.jpg') }}" alt="Jam Gadang">
+                <div class="stackhero-card-label">
+                    <span>Jam Gadang</span>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
+
+<style>
+    .stackhero {
+        --sh-bg-1: #0B1710;
+        --sh-bg-2: #142A1D;
+        --sh-gold: #C9A24B;
+        --sh-cream: #F3EEE2;
+        --sh-sage: #93A896;
+
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(160deg, var(--sh-bg-1) 0%, var(--sh-bg-2) 100%);
+        padding: 5.5rem 0 6.5rem;
+    }
+
+    .stackhero-glow {
+        position: absolute;
+        top: 8%;
+        left: 50%;
+        width: 620px;
+        height: 620px;
+        transform: translateX(-50%);
+        background: radial-gradient(circle, rgba(201, 162, 75, 0.22) 0%, rgba(201, 162, 75, 0) 65%);
+        pointer-events: none;
+    }
+
+    .stackhero-eyebrow {
+        display: inline-block;
+        font-size: 0.78rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--sh-sage);
+        margin-bottom: 1.25rem;
+        font-weight: 500;
+    }
+
+    .stackhero-title {
+        font-family: 'Fraunces', serif;
+        font-weight: 900;
+        text-transform: uppercase;
+        color: var(--sh-cream);
+        font-size: clamp(2rem, 5vw, 3.4rem);
+        line-height: 1.15;
+        letter-spacing: 0.01em;
+        margin-bottom: 1.25rem;
+    }
+
+    .stackhero-title em {
+        font-style: italic;
+        font-weight: 500;
+        color: var(--sh-gold);
+        text-transform: none;
+    }
+
+    .stackhero-desc {
+        color: rgba(243, 238, 226, 0.72);
+        font-size: 1.02rem;
+        max-width: 560px;
+        margin: 0 auto 2.25rem;
+        line-height: 1.7;
+    }
+
+    .stackhero-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: var(--sh-gold);
+        color: #1a1305;
+        font-weight: 600;
+        padding: 0.85rem 1.75rem;
+        border-radius: 50px;
+        text-decoration: none;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .stackhero-cta:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 28px rgba(201, 162, 75, 0.35);
+        color: #1a1305;
+    }
+
+    .stackhero-cta-ghost {
+        display: inline-flex;
+        align-items: center;
+        color: var(--sh-cream);
+        font-weight: 500;
+        padding: 0.85rem 1rem;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(243, 238, 226, 0.3);
+        transition: border-color 0.3s ease, color 0.3s ease;
+    }
+
+    .stackhero-cta-ghost:hover {
+        color: var(--sh-gold);
+        border-color: var(--sh-gold);
+    }
+
+    .stackhero-stage {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 4rem;
+        min-height: 420px;
+    }
+
+    .stackhero-card {
+        position: absolute;
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.6s ease;
+    }
+
+    .stackhero-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .stackhero-card-center {
+        position: relative;
+        width: 340px;
+        height: 460px;
+        z-index: 3;
+    }
+
+    .stackhero-card-left,
+    .stackhero-card-right {
+        width: 250px;
+        height: 380px;
+        z-index: 1;
+        filter: brightness(0.7);
+    }
+
+    .stackhero-card-left {
+        transform: translateX(-140px) rotate(-8deg);
+    }
+
+    .stackhero-card-right {
+        transform: translateX(140px) rotate(8deg);
+    }
+
+    .stackhero-stage:hover .stackhero-card-left {
+        transform: translateX(-175px) rotate(-4deg);
+        filter: brightness(0.85);
+    }
+
+    .stackhero-stage:hover .stackhero-card-right {
+        transform: translateX(175px) rotate(4deg);
+        filter: brightness(0.85);
+    }
+
+    .stackhero-stage:hover .stackhero-card-center {
+        transform: translateY(-6px);
+        box-shadow: 0 35px 70px rgba(0, 0, 0, 0.55);
+    }
+
+    .stackhero-card-label {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 1rem;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, transparent 100%);
+        color: var(--sh-cream);
+        font-size: 0.85rem;
+        font-weight: 500;
+        letter-spacing: 0.03em;
+    }
+
+    .stackhero-card-label-lg {
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+    }
+
+    .stackhero-card-tag {
+        font-size: 0.7rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--sh-gold);
+        font-weight: 600;
+    }
+
+    .stackhero-card-title {
+        font-family: 'Fraunces', serif;
+        font-size: 1.4rem;
+        font-weight: 600;
+    }
+
+    @media (max-width: 767px) {
+        .stackhero { padding: 4rem 0 4.5rem; }
+        .stackhero-stage { min-height: 340px; margin-top: 3rem; }
+        .stackhero-card-center { width: 220px; height: 320px; }
+        .stackhero-card-left,
+        .stackhero-card-right { width: 150px; height: 240px; }
+        .stackhero-card-left { transform: translateX(-70px) rotate(-6deg); }
+        .stackhero-card-right { transform: translateX(70px) rotate(6deg); }
+        .stackhero-title { letter-spacing: 0; }
+    }
+</style>
 
 {{-- ============================= INFO + FAQ (Gallery) ============================= --}}
 <section class="about-section" id="kontak-section">

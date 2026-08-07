@@ -18,4 +18,10 @@ class Destinasi extends Model
     'lokasi', 
     'harga_tiket',
     ];
+
+    public function atraksi()
+{
+    return $this->hasMany(Atraksi::class);
+}
+
 }

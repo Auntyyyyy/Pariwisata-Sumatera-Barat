@@ -57,8 +57,7 @@ class DestinasiController extends Controller
 
     public function show($id)
     {
-        $destinasi = Destinasi::findOrFail($id);
-
+        $destinasi = Destinasi::with('atraksi')->findOrFail($id);
         return view('destinations-details', [
             'destinasi' => $destinasi,
         ]);
@@ -104,4 +103,7 @@ class DestinasiController extends Controller
         return redirect()->route('destinations')
             ->with('success', 'Destinasi berhasil dihapus!');
     }
+
+    
+
 }

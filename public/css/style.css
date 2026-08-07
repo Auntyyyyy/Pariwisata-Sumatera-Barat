@@ -248,6 +248,8 @@ img {
     margin: 4px 0;
     display: inline-block;
   }
+
+  
 }
 
 /* ==========================================================================
@@ -2360,4 +2362,239 @@ textarea.form-control-nature {
 
 .modal-nature-text strong {
   color: var(--ink);
+}
+
+.table-nature thead th {
+    background: rgba(40, 167, 69, 0.06);
+    border-bottom: none;
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #334155;
+    padding: 0.9rem 1rem;
+}
+
+.table-nature tbody td {
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.table-nature tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.table-nature tbody tr:hover {
+    background: rgba(40, 167, 69, 0.03);
+}
+
+.status-badge-inline {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.65rem;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
+.status-badge-inline.status-buka {
+    background: rgba(40, 167, 69, 0.12);
+    color: #157347;
+}
+
+.status-badge-inline.status-tutup {
+    background: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+}
+
+.btn-icon-nature {
+    width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.6rem;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    color: #475569;
+    background: #fff;
+    transition: all 0.2s ease;
+}
+
+.btn-icon-nature:hover {
+    background: rgba(40, 167, 69, 0.08);
+    color: #157347;
+    border-color: rgba(40, 167, 69, 0.3);
+}
+
+.btn-icon-danger:hover {
+    background: rgba(220, 53, 69, 0.08);
+    color: #dc3545;
+    border-color: rgba(220, 53, 69, 0.3);
+}
+
+/* ==========================================================================
+   User avatar dropdown — navbar pojok kanan
+   Tambahkan blok ini ke akhir file public/css/style.css
+   ========================================================================== */
+
+.user-menu-item {
+  list-style: none;
+  position: relative;
+}
+
+.user-avatar-trigger {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.user-avatar-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--gradient-nature);
+  color: var(--white);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.95rem;
+  box-shadow: var(--shadow-soft);
+  transition: var(--transition-smooth);
+  border: 2px solid var(--white);
+}
+
+.user-avatar-trigger:hover .user-avatar-circle {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.user-avatar-circle-lg {
+  width: 52px;
+  height: 52px;
+  font-size: 1.15rem;
+  flex-shrink: 0;
+}
+
+/* Dropdown panel */
+.user-dropdown-menu {
+  min-width: 260px;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-hover);
+  padding: 18px;
+  margin-top: 14px !important;
+}
+
+.user-dropdown-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 4px 4px 8px;
+}
+
+.user-dropdown-info {
+  min-width: 0;
+}
+
+.user-dropdown-name {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-dropdown-email {
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 170px;
+}
+
+.user-dropdown-menu .dropdown-divider {
+  border-color: var(--border-soft);
+  margin: 10px 0;
+}
+
+.user-dropdown-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+  transition: var(--transition-smooth);
+}
+
+.user-dropdown-link i {
+  font-size: 1rem;
+  color: var(--sea-blue);
+  width: 18px;
+}
+
+.user-dropdown-link:hover {
+  background: var(--grey-light);
+  color: var(--ink);
+}
+
+.user-dropdown-logout {
+  color: #DC2626;
+}
+
+.user-dropdown-logout i {
+  color: #DC2626;
+}
+
+.user-dropdown-logout:hover {
+  background: rgba(239, 68, 68, 0.08);
+  color: #DC2626;
+}
+
+/* Guest state — tombol "Masuk" kecil di navbar */
+.btn-editorial-outline-nav {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.88rem;
+  padding: 9px 22px;
+  border-radius: 999px;
+  border: 1.5px solid var(--leaf-green);
+  color: var(--leaf-green-dark);
+  background: transparent;
+  transition: var(--transition-smooth);
+  display: inline-block;
+}
+
+.btn-editorial-outline-nav:hover {
+  background: var(--gradient-nature);
+  border-color: transparent;
+  color: var(--white);
+}
+
+@media (max-width: 991px) {
+  .user-menu-item {
+    margin-top: 12px;
+    display: flex;
+    justify-content: center;
+  }
+  .user-dropdown-menu {
+    position: static !important;
+    transform: none !important;
+    box-shadow: none;
+    border: 1px solid var(--border-soft);
+    margin-top: 10px !important;
+    width: 100%;
+  }
 }

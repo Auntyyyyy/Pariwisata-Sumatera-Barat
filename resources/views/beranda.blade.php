@@ -83,13 +83,10 @@
             ['img' => 'Aul.jpeg', 'caption' => 'Mimin cantik'],
             ['img' => 'Mentawai 1.jpeg', 'caption' => 'Pulau Tuapejat'],
             ['img' => 'Mentawai 2.jpeg', 'caption' => 'Suku Mentawai'],
-            ['img' => 'Jokowi.jpg', 'caption' => 'Hidup Jokowiii'],
             ['img' => 'Ngarai-Sianok 1.jpeg', 'caption' => 'Ngarai Sianok'],
             ['img' => 'Mentawai Tengkorak.jpeg', 'caption' => 'UMA'],
             ['img' => 'Pulau Awera Mentawai.jpeg', 'caption' => 'Pulau Awera'],
-            ['img' => 'Wowo.jpg', 'caption' => 'Pria Sawit'],
             ['img' => 'Suku Mentawai.jpeg', 'caption' => 'Pemandangan Suku Mentawai'],
-            ['img' => 'kubi.gif', 'caption' => 'Pentol'],
 
         ];
     @endphp

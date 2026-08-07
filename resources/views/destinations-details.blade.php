@@ -262,87 +262,52 @@ if ($jamsekarang >= (int) $destinasi->jam_buka && $jamsekarang < (int) $destinas
             </div>
         </div>
 
-        {{-- ========================================================= --}}
-        {{-- SEKSYEN BARU: GALERI ATRAKSI & HIBURAN PADA DESTINASI INI --}}
-        {{-- ========================================================= --}}
-        <div class="mt-5 pt-3" data-reveal>
-            <div class="d-flex justify-content-between align-items-end mb-4">
-                <div>
-                    <span class="section-eyebrow"><i class="bi bi-controller"></i> Aktivitas & Hiburan</span>
-                    <h3 class="fw-bold m-0" style="font-family: var(--font-heading);">Atraksi & Hiburan Tersedia</h3>
+        {{-- Galeri Atraksi --}}
+<div class="detail-atraksi mt-5" data-reveal>
+    <div class="d-flex align-items-center justify-content-between mb-3">
+        <h2 class="section-title mb-0">Hiburan & Atraksi</h2>
+        @if ($destinasi->atraksi->count() > 0)
+            <span class="badge bg-success-subtle text-success fw-semibold">
+                {{ $destinasi->atraksi->count() }} Atraksi
+            </span>
+        @endif
+    </div>
+
+    <div class="row g-4">
+        @forelse ($destinasi->atraksi as $atraksi)
+            <div class="col-md-4 col-sm-6">
+                <div class="attraction-card">
+                    <div class="attraction-img-wrapper">
+                        <img src="{{ asset('images/' . $atraksi->gambar) }}"
+                             alt="{{ $atraksi->nama }}"
+                             loading="lazy">
+                        <span class="attraction-badge">
+                            <i class="bi bi-tag-fill me-1"></i>{{ $atraksi->kategori }}
+                        </span>
+                    </div>
+                    <div class="p-3 d-flex flex-column flex-grow-1">
+                        <h6 class="fw-bold mb-1" style="font-family: var(--font-heading);">
+                            {{ $atraksi->nama }}
+                        </h6>
+                        @if (!empty($atraksi->deskripsi))
+                            <p class="text-secondary small mb-0">
+                                {{ Str::limit($atraksi->deskripsi, 70) }}
+                            </p>
+                        @endif
+                    </div>
                 </div>
-                <span class="badge bg-success-subtle text-success px-3 py-2 rounded-pill d-none d-md-inline-block">
-                    <i class="bi bi-sparkles me-1"></i> Pengalaman Seru
-                </span>
             </div>
-
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-                {{-- Opsi 1: Jika Ada Data Atraksi/Galeri dari Database --}}
-                @if(isset($destinasi->atraksi) && count($destinasi->atraksi) > 0)
-                    @foreach($destinasi->atraksi as $item)
-                        <div class="col">
-                            <div class="attraction-card">
-                                <div class="attraction-img-wrapper">
-                                    <img src="{{ asset('images/' . $item->gambar) }}" alt="{{ $item->nama }}">
-                                    <span class="attraction-badge">{{ $item->kategori ?? 'Atraksi Wisata' }}</span>
-                                </div>
-                                <div class="p-3 d-flex flex-column flex-grow-1">
-                                    <h6 class="fw-bold mb-1" style="font-family: var(--font-heading);">{{ $item->nama }}</h6>
-                                    <p class="text-secondary small mb-0 flex-grow-1">{{ $item->deskripsi }}</p>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-
-                {{-- Opsi 2: Fallback Sampel Atraksi (Apabila belum ada tabel relasi atraksi) --}}
-                @else
-                    <div class="col">
-                        <div class="attraction-card">
-                            <div class="attraction-img-wrapper">
-                                <img src="{{ asset('images/' . $destinasi->gambar) }}" alt="Spot Foto Panorama">
-                                <span class="attraction-badge"><i class="bi bi-camera"></i> Spot Foto</span>
-                            </div>
-                            <div class="p-3 d-flex flex-column flex-grow-1">
-                                <h6 class="fw-bold mb-1" style="font-family: var(--font-heading);">Spot Foto Panorama 360°</h6>
-                                <p class="text-secondary small mb-0 flex-grow-1">
-                                    Nikmati sudut pemandangan keindahan alam {{ $destinasi->nama }} terbaik dari gardu pandang favorit pengunjung.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="attraction-card">
-                            <div class="attraction-img-wrapper">
-                                <img src="{{ asset('images/' . $destinasi->gambar) }}" alt="Wahana Rekreasi">
-                                <span class="attraction-badge"><i class="bi bi-compass"></i> Petualangan</span>
-                            </div>
-                            <div class="p-3 d-flex flex-column flex-grow-1">
-                                <h6 class="fw-bold mb-1" style="font-family: var(--font-heading);">Jelajah Area & Outbound</h6>
-                                <p class="text-secondary small mb-0 flex-grow-1">
-                                    Kegiatan luar ruangan seru seperti trekking santai dan area outbond yang aman untuk keluarga dan grup.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="attraction-card">
-                            <div class="attraction-img-wrapper">
-                                <img src="{{ asset('images/' . $destinasi->gambar) }}" alt="Area Santai">
-                                <span class="attraction-badge"><i class="bi bi-cup-hot"></i> Hiburan Santai</span>
-                            </div>
-                            <div class="p-3 d-flex flex-column flex-grow-1">
-                                <h6 class="fw-bold mb-1" style="font-family: var(--font-heading);">Area Santai & Kuliner Local</h6>
-                                <p class="text-secondary small mb-0 flex-grow-1">
-                                    Nikmati suguhan kuliner khas daerah sekitar lokasi {{ $destinasi->nama }} sambil bersantai di gazebo.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                @endif
+        @empty
+            <div class="col-12">
+                <div class="text-center py-5 rounded-4" style="background: rgba(40,167,69,0.05); border: 1px dashed rgba(40,167,69,0.3);">
+                    <i class="bi bi-images fs-1 text-success-emphasis d-block mb-2"></i>
+                    <p class="text-muted mb-0">Belum ada atraksi untuk destinasi ini.</p>
+                </div>
             </div>
-        </div>
+        @endforelse
+    </div>
+</div>
+
 
         {{-- Peta lokasi --}}
         <div class="mt-5" data-reveal>
@@ -354,6 +319,9 @@ if ($jamsekarang >= (int) $destinasi->jam_buka && $jamsekarang < (int) $destinas
                 </iframe>
             </div>
         </div>
+
+       
+
 
         {{-- Fasilitas --}}
         <div class="card-nature mt-5" data-reveal>

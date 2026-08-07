@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Atraksi;
+use App\Models\Destinasi;
 
 class AtraksiController extends Controller
 {
@@ -16,12 +17,15 @@ class AtraksiController extends Controller
  
 public function create()
 {
-    return view('atraksi-create');
+    $destinasiList = Destinasi::all();
+    return view('atraksi-create', compact('destinasiList'));
 }
+ 
  
 public function store(Request $request)
 {
     $validated = $request->validate([
+        'destinasi_id' => 'required|exists:destinasi,id',
         'nama' => 'required|min:3',
         'deskripsi' => 'required',
         'kategori' => 'required',
@@ -39,20 +43,24 @@ public function store(Request $request)
 public function edit($id)
 {
     $atraksi = Atraksi::findOrFail($id);
-    return view('atraksi-edit', compact('atraksi'));
+    $destinasiList = Destinasi::all();
+    return view('atraksi-edit', compact('atraksi', 'destinasiList'));
 }
+
  
 public function update(Request $request, $id)
 {
     $atraksi = Atraksi::findOrFail($id);
  
     $validated = $request->validate([
-        'nama' => 'required|min:3',
-        'deskripsi' => 'required',
-        'kategori' => 'required',
-        'harga' => 'required|numeric|min:0',
-        'gambar' => 'required',
-    ]);
+    'destinasi_id' => 'required|exists:destinasi,id',
+    'nama' => 'required|min:3',
+    'deskripsi' => 'required',
+    'kategori' => 'required',
+    'harga' => 'required|numeric|min:0',
+    'gambar' => 'required',
+]);
+
  
     $atraksi->update($validated);
  
@@ -67,7 +75,8 @@ public function destroy($id)
     return redirect()->route('atraksi')
         ->with('success', 'Atraksi berhasil dihapus!');
 }
- //
+ 
+
 }
 
 
